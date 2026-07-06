@@ -21,3 +21,10 @@ RUN a2enmod rewrite
 EXPOSE 8080
 
 CMD ["apache2-foreground"]
+
+# Copiar el script de inicio y darle permisos
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Indicarle al contenedor que use el script
+CMD ["/usr/local/bin/docker-entrypoint.sh"]
